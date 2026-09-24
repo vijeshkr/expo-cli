@@ -2,6 +2,7 @@
   "expo": {
     "name": "expo-cli",
     "slug": "expo-cli",
+    "scheme": "expo-cli",
     "version": "1.0.0",
     "plugins": [
       "expo-router",
