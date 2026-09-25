@@ -5,6 +5,7 @@
 export const Routes = {
   Home: '/',
   Pagination: '/pagination',
+  LikeButton: '/likebutton'
   // New practice routes will be declared here
 } as const;
 

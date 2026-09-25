@@ -16,4 +16,12 @@ export const PRACTICE_PROBLEMS: PracticeProblem[] = [
       'Client-side pagination algorithm with page number generation, item slicing, and page size control.',
     route: '/pagination',
   },
+  {
+    id: 'likebutton',
+    title: '2. Like Button',
+    category: 'UI Components & State',
+    description:
+      'Like Button with loading and clicked state',
+    route: '/likebutton',
+  },
 ];
