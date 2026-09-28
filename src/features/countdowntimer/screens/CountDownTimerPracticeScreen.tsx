@@ -22,46 +22,46 @@ export const CountDownTimerPracticeScreen: React.FC = () => {
     const start = () => {
         if (second == 0 && minute == 0 && hour == 0) return;
         setRunning('running');
-        intervalRef.current = setInterval(() => {
-            timer();
-        }, 1000)
+        // intervalRef.current = setInterval(() => {
+        //     timer();
+        // }, 1000)
     }
 
-    const timer = () => {
-        setSecond((prevSec) => {
-            if (prevSec > 0) {
-                return prevSec - 1;
-            }
-            setMinute((prevMin) => {
-                if (prevMin > 0) {
-                    return prevMin - 1;
-                }
-                setHour((prevHour) => {
-                    if (prevHour > 0) {
-                        return prevHour - 1;
-                    }
-                    if (intervalRef.current !== null) {
-                        clearInterval(intervalRef.current);
-                        intervalRef.current = null;
-                    }
-                    setRunning('start');
-                    return 0;
-                })
-                return 59;
-            })
-            return 59;
-        })
-    }
+    // const timer = () => {
+    //     setSecond((prevSec) => {
+    //         if (prevSec > 0) {
+    //             return prevSec - 1;
+    //         }
+    //         setMinute((prevMin) => {
+    //             if (prevMin > 0) {
+    //                 return prevMin - 1;
+    //             }
+    //             setHour((prevHour) => {
+    //                 if (prevHour > 0) {
+    //                     return prevHour - 1;
+    //                 }
+    //                 if (intervalRef.current !== null) {
+    //                     clearInterval(intervalRef.current);
+    //                     intervalRef.current = null;
+    //                 }
+    //                 setRunning('start');
+    //                 return 0;
+    //             })
+    //             return hour > 0 ? 59 : 0;
+    //         })
+    //         return (minute > 0 || hour > 0) ? 59 : 0;
+    //     })
+    // }
 
     const resume = () => {
         clearInterval(intervalRef.current);
-        intervalRef.current == null;
+        intervalRef.current = null;
         setRunning('pause');
     }
 
     const reset = () => {
         clearInterval(intervalRef.current);
-        intervalRef.current == null;
+        intervalRef.current = null;
         setSecond(0);
         setMinute(0);
         setHour(0);
@@ -71,6 +71,33 @@ export const CountDownTimerPracticeScreen: React.FC = () => {
     const handleOnPress = () => {
         running === 'running' ? resume() : start();
     }
+
+    useEffect(() => {
+        if (running !== 'running') return;
+        const intervalId = setInterval(() => {
+            if (second > 0) {
+                setSecond(second - 1);
+            } else if (minute > 0) {
+                setMinute(minute - 1);
+                setSecond(59);
+            } else if (hour > 0) {
+                setHour(hour - 1);
+                setMinute(59);
+                setSecond(59);
+            } else {
+                setRunning('start');
+            }
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, [running, second, minute, hour]);
+
+    // useEffect(() => {
+    //     return () => {
+    //         if (intervalRef.current !== null) {
+    //             clearInterval(intervalRef.current);
+    //         }
+    //     };
+    // }, []);
 
     return (
         <SafeAreaView style={styles.safeArea}>
