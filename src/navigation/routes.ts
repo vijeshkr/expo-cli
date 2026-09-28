@@ -5,7 +5,8 @@
 export const Routes = {
   Home: '/',
   Pagination: '/pagination',
-  LikeButton: '/likebutton'
+  LikeButton: '/likebutton',
+  CountDownTimer: '/countdowntimer'
   // New practice routes will be declared here
 } as const;
 

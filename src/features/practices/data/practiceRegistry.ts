@@ -24,4 +24,12 @@ export const PRACTICE_PROBLEMS: PracticeProblem[] = [
       'Like Button with loading and clicked state',
     route: '/likebutton',
   },
+  {
+    id: 'countdowntimer',
+    title: '3. Count Down Timer',
+    category: 'UI Components & State',
+    description:
+      'Count down timer - hours minutes seconds',
+    route: '/countdowntimer',
+  },
 ];
